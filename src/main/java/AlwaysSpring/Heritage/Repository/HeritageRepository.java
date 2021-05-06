@@ -30,7 +30,7 @@ public class HeritageRepository {
 
     public CulturalHeritage findByName(String name) {
         for (int i = 0; i < map.size(); i++) {
-             String getName = map.get(i).getName();
+             String getName = map.get(i).getCcmaName();
             if (getName.equals(name)) {
                 return map.get(i);
             }

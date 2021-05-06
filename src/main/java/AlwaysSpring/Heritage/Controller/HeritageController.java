@@ -18,6 +18,6 @@ public class HeritageController {
     public String getTop100List() {
         xmlParsingService.saveList();
 
-
+        return "";
     }
 }

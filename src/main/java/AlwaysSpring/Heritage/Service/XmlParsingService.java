@@ -1,6 +1,10 @@
 package AlwaysSpring.Heritage.Service;
 
+import AlwaysSpring.Heritage.Domain.CulturalHeritage;
+import AlwaysSpring.Heritage.Domain.Dto.HeritageDetailDTO;
 import AlwaysSpring.Heritage.Domain.Dto.HeritageListDTO;
+import AlwaysSpring.Heritage.Repository.HeritageRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -12,76 +16,102 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class XmlParsingService {
+
+    private final HeritageRepository heritageRepository;
 
 
     public void saveList() {
         List<HeritageListDTO> dtos = new ArrayList<>();
-        List<String> list = getXmlHeritage();
-        for (int i = 0; i < list.size(); i++) {
+        getCulturalHeritage();
+        CulturalHeritage one = heritageRepository.findOne(1);
+        System.out.println(one.toString());
 
-
-        }
     }
 
-    public List<String> getXmlHeritage() {
-        List<String> data = new ArrayList<>();
-        String addr = "http://www.cha.go.kr/cha/SearchKindOpenapiList.do?pageUnit=100&pageIndex=1";
+    public void getCulturalHeritage() {
+        String addr = "http://www.cha.go.kr/cha/SearchKindOpenapiList.do?pageUnit=10&pageIndex=1&ccbaCtcd=21";
         try {
-            URL url = new URL(addr);
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
-            http.setConnectTimeout(10000);
-            http.setUseCaches(false);
+            List<HeritageDetailDTO> heritageList = getXmlHeritageList(addr);
+            getXmlHeritageDetail(heritageList);
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(http.getInputStream()));
-            while (true) {
-                String line = br.readLine();
-                if (line == null)
-                    break;
-                data.add(line);
-            }
-            br.close();
-            http.disconnect();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return data;
     }
 
-    public void bindingList(HeritageListDTO dto, String one) {
-        if (one.charAt(0) != '<') {
-            return;
+    public void getXmlHeritageDetail(List<HeritageDetailDTO> dtoList) throws ParserConfigurationException, IOException, SAXException {
+        for (int i = 0; i < dtoList.size(); i++) {
+            HeritageDetailDTO dto = dtoList.get(i);
+            String url = dto.getUrl();
+            Document document = getBuildDocument(url);
+            NodeList itemTagList = document.getElementsByTagName("item");
+            for (int j = 0; j < itemTagList.getLength(); ++j) {
+                Node node = itemTagList.item(j);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    CulturalHeritage heritage = new CulturalHeritage();
+                    heritage.setCcmaName(getTagValue("ccmaName", element));
+                    heritage.setGcodeName(getTagValue("gcodeName", element));
+                    heritage.setBcodeName(getTagValue("bcodeName", element));
+                    heritage.setMcodeName(getTagValue("mcodeName", element));
+                    heritage.setScodeName(getTagValue("scodeName", element));
+                    heritage.setCcbaQuan(getTagValue("ccbaQuan", element));
+                    heritage.setCcbaAsdt(getTagValue("ccbaAsdt", element));
+                    heritage.setCcbaLcad(getTagValue("ccbaLcad", element));
+                    heritage.setCcceName(getTagValue("ccceName", element));
+                    heritage.setCcbaPoss(getTagValue("ccbaPoss", element));
+                    heritage.setCcbaAdmin(getTagValue("ccbaAdmin", element));
+                    heritage.setImageUrl(getTagValue("imageUrl", element));
+                    heritage.setContent(getTagValue("content", element));
+                    int save = heritageRepository.save(heritage);
+                    System.out.println(save);
+                }
+            }
         }
-        int cutIndex = one.indexOf('>');
-        String name = one.substring(1, cutIndex - 1);
-        int endIndex = one.substring(cutIndex+2).indexOf('>');
-        String cut = one.substring(cutIndex+2, endIndex-1);
 
-        switch (name) {
-            case "sn":
-                dto.setSn();
-            case "no":
-            case "ccmaName":
-            case "crltsnoNm":
-            case "ccbaMnm1":
-            case "ccbaMnm2":
-            case "ccbaCtcdNm":
-            case "ccsiName":
-            case "ccbaAdmin":
-            case "ccbaKdcd":
-            case "ccbaCtcd":
-            case "ccbaAsno":
-            case "ccbaCncl":
-            case "ccbaCpno":
-            case "longitude":
-            case "latitude":
+
+    }
+
+    public List<HeritageDetailDTO> getXmlHeritageList(String url) throws ParserConfigurationException, IOException, SAXException {
+
+        Document document = getBuildDocument(url);
+
+        NodeList itemTagList = document.getElementsByTagName("item");
+        List<HeritageDetailDTO> list = new ArrayList<>();
+
+        for (int i = 0; i < itemTagList.getLength(); ++i) {
+            Node node = itemTagList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                list.add(new HeritageDetailDTO());
+                Element element = (Element) node;
+                list.get(i).setCcbaKdcd(getTagValue("ccbaKdcd", element));
+                list.get(i).setCcbaAsno(getTagValue("ccbaAsno", element));
+                list.get(i).setCcbaCtcd(getTagValue("ccbaCtcd", element));
+            }
         }
+        return list;
+    }
+
+    private Document getBuildDocument(String url) throws ParserConfigurationException, SAXException, IOException {
+        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = builderFactory.newDocumentBuilder();
+        Document document = builder.parse(url);
+        document.getDocumentElement().normalize();
+        return document;
+    }
+
+    private String getTagValue(String tag, Element element) {
+        NodeList list = element.getElementsByTagName(tag).item(0).getChildNodes();
+        Node value = (Node) list.item(0);
+        if (value == null) {
+            return null;
+        }
+        return value.getNodeValue();
     }
 }
