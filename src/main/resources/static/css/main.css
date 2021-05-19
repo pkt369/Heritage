@@ -89,7 +89,7 @@ a {
     margin: 50px auto auto auto;
 }
 
-.slideshow-container .mySlides img {
+.slideshow-container .mySlides a img {
     height: 500px;
 }
 

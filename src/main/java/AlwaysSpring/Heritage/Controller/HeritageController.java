@@ -36,6 +36,7 @@ public class HeritageController {
     public String heritageDetail(@RequestParam(value = "heritage") Long id, Model model) {
         CulturalHeritage heritage = heritageService.findOne(id);
         model.addAttribute("heritage", heritage);
+        heritageService.plusSearchCount(id);
 
         List<Review> reviewList = reviewService.findByHeritage(id);
         if (!reviewList.isEmpty()) {
@@ -56,7 +57,7 @@ public class HeritageController {
     @ResponseBody
     @PostMapping("/saveReview")
     public Map<String, Object> saveReview(@RequestBody ReviewDto reviewDto,
-                             Principal principal) {
+                                          Principal principal) {
         Map<String, Object> map = new HashMap<>();
         if (principal == null) {
             map.put("msg", "로그인이 되어있지 않습니다.");
@@ -69,5 +70,10 @@ public class HeritageController {
         List<Review> reviewList = reviewService.findByHeritage(reviewDto.getHeritageId());
         map.put("list", reviewList);
         return map;
+    }
+
+    @GetMapping("/todayHeritage")
+    public String todayHeritagePage() {
+        return "todayHeritage";
     }
 }

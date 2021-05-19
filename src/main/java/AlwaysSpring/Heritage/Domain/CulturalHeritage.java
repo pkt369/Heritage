@@ -1,9 +1,6 @@
 package AlwaysSpring.Heritage.Domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -27,6 +24,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@ToString
 @NoArgsConstructor
 public class CulturalHeritage {
 
@@ -52,24 +50,11 @@ public class CulturalHeritage {
     @Column(length = 5000)
     private String content;
 
-    @Override
-    public String toString() {
-        return "CulturalHeritage{" +
-                "id=" + id +
-                ", ccmaName='" + ccmaName + '\'' +
-                ", gcodeName='" + gcodeName + '\'' +
-                ", bcodeName='" + bcodeName + '\'' +
-                ", mcodeName='" + mcodeName + '\'' +
-                ", scodeName='" + scodeName + '\'' +
-                ", ccbaQuan='" + ccbaQuan + '\'' +
-                ", ccbaAsdt='" + ccbaAsdt + '\'' +
-                ", ccbaPoss='" + ccbaPoss + '\'' +
-                ", ccbaAdmin='" + ccbaAdmin + '\'' +
-                ", ccceName='" + ccceName + '\'' +
-                ", ccbaLcad='" + ccbaLcad + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", ccbaMnm1='" + ccbaMnm1 + '\'' +
-                ", content='" + content + '\'' +
-                '}';
+    private Long searchCount = 1L;
+
+
+    public void plusSearchCount() {
+        this.searchCount++;
     }
+
 }

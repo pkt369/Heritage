@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>intro</title>
+    <link href="css/intro.css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="/fragments/header.html :: fragment-header"></div>
+<div class="content">
+    <div th:replace="/fragments/navbar.html :: fragment-navbar"></div>
+    <div style="text-align: center; margin-top: 100px;">
+        <img src="img/today1.png" style="margin: 30px auto; height: 900px; display: block;">
+        <img src="img/today2.png" style="margin: 30px auto; height: 900px; display: block;">
+        <img src="img/today3.png" style="margin: 30px auto; height: 900px; display: block;">
+        <img src="img/today4.png" style="margin: 30px auto; height: 900px; display: block;">
+        <img src="img/today5.png" style="margin: 30px auto; height: 900px; display: block;">
+    </div>
 
+</div>
 </body>
 </html>

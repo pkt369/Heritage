@@ -30,4 +30,12 @@ public class HeritageService {
         return heritageRepository.findByName(name);
     }
 
+    public List<CulturalHeritage> getTopTen() {
+        return heritageRepository.getTopTen();
+    }
+
+    public void plusSearchCount(Long id) {
+        heritageRepository.updateHeritageCount(id);
+    }
+
 }

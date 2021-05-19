@@ -22,7 +22,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String mainPage(Model model) {
-        List<CulturalHeritage> heritageList = heritageService.findAll();
+        List<CulturalHeritage> heritageList = heritageService.getTopTen();
         model.addAttribute("list", heritageList);
         return "main";
     }
