@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/fragments/header.html :: fragment-header"></div>
+<script src="js/search.js"></script>
+<div class="content">
+    <div th:replace="/fragments/navbar.html :: fragment-navbar"></div>
+    <div class="searchCover">
+        <div class="searchNum">
+            <p style="margin-left: 30px;">검색결과 <span th:text="${listSize}">0</span>개</p>
+        </div>
+        <div th:if="${listSize} != 0" th:each="heritage : ${findList}" class="searchContent">
+            <div>
+                <a th:href="@{/heritageDetail(heritage=${heritage.getId()})}"><span th:text="${heritage.getCcbaMnm1()}"></span></a>
+                <p th:text="${heritage.getContent()}" class="searchDetail"></p>
+            </div>
+        </div>
+        <div th:unless="${listSize} != 0">
+            <div>
+                <p>검색된 내용이 없습니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

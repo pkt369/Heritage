@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>intro</title>
+    <link href="css/intro.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/fragments/header.html :: fragment-header"></div>
+<div class="content">
+    <div th:replace="/fragments/navbar.html :: fragment-navbar"></div>
+    <h1 class="introName"><span style="color: pink">늘</span><span style="color: #C1E0EB;">봄</span>이란?</h1>
+    <div class="introMain">
+        <video controls width="500">
+            <source  src="img/introVideo.mp4" type="video/mp4">
+        </video>
+        <h2>행복한 문화생활을 창조하는 플랫폼 ‘늘봄’</h2>
+        <span>늘봄은 부산 지역의 다양한 문화재와<br>
+        문화유산을 바탕으로 만들어진 <br>
+        부산 문화재 홍보 플랫폼입니다. <br>
+        </span>
+    </div>
+    <div class="introSub">
+        <img src="img/intro1.png">
+        <h2>빅데이터 기반의 플랫폼</h2>
+        <span>21세기 급진적으로 발전하고 있는 빅데이터 <br>
+        기술을 플랫폼에 적용시켜 부산의 문화재와 <br>
+        문화유산을 색다른 방식으로 홍보하고 <br>
+        부산의 문화 산업 부흥을 선도하고자 합니다. <br>
+        </span>
+    </div>
+    <div class="introMain">
+        <img src="img/intro2.png">
+        <h2 style="left: 930px !important">차별화된 컨텐츠</h2>
+        <span>기존의 회원시스템에서 벗어나 문화재 및 <br>
+        문화유산 카탈로그의 화려한 시각적 요소와 <br>
+        정보의 조화를 통해 이용자들에게 다양한 <br>
+        혜택과 재미를 드리겠습니다. <br>
+        </span>
+    </div>
+
+</div>
+</body>
+</html>

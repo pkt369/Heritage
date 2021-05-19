@@ -1,41 +1,38 @@
 package AlwaysSpring.Heritage.Repository;
 
 import AlwaysSpring.Heritage.Domain.CulturalHeritage;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Repository
+@RequiredArgsConstructor
 public class HeritageRepository {
-    private final Map<Integer, CulturalHeritage> map = new HashMap<>();
-    private int id = 1;
 
-    public int save(CulturalHeritage heritage) {
-        map.put(id, heritage);
-        return id++;
+    private final EntityManager em;
+
+    public void save(CulturalHeritage heritage) {
+        em.persist(heritage);
     }
 
-    public CulturalHeritage findOne(int id) {
-        return map.get(id);
+    public CulturalHeritage findOne(Long id) {
+        return em.find(CulturalHeritage.class, id);
     }
 
     public List<CulturalHeritage> findAll() {
-        List<CulturalHeritage> list = new ArrayList<>();
-        map.forEach((integer, heritage) -> list.add(heritage));
-        return list;
+        return em.createQuery("select c from CulturalHeritage c", CulturalHeritage.class)
+            .getResultList();
     }
 
-    public CulturalHeritage findByName(String name) {
-        for (int i = 0; i < map.size(); i++) {
-             String getName = map.get(i).getCcmaName();
-            if (getName.equals(name)) {
-                return map.get(i);
-            }
-        }
-        return null;
+    public List<CulturalHeritage> findByName(String name) {
+        return em.createQuery("select c from CulturalHeritage c where c.ccbaMnm1 LIKE :name", CulturalHeritage.class)
+                .setParameter("name", '%' + name + '%')
+                .getResultList();
     }
 
 }

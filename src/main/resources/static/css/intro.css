@@ -1,0 +1,73 @@
+.introName {
+    margin: 100px 0 0 265px;
+    font-family: BMHANNAPro;
+    font-size: 60px;
+    color: white;
+}
+
+.introMain {
+    position: relative;
+    margin: 100px auto;
+    width: 1400px;
+}
+
+.introMain img {
+    width: 600px;
+    height: 400px;
+}
+
+.introMain video {
+    width: 600px;
+    height: 400px;
+}
+
+.introMain h2 {
+    position: absolute;
+    top: 80px;
+    left: 720px;
+    font-size: 40px;
+    color: pink;
+    font-family: BMHANNAPro;
+}
+
+.introMain span {
+    position: absolute;
+    top: 145px;
+    left: 825px;
+    color: #C1E0EB;
+    font-size: 31px;
+    font-family: BMHANNAPro;
+}
+
+.introSub {
+    position: relative;
+    margin: 100px auto;
+    width: 1400px;
+    height: 400px;
+}
+
+.introSub img {
+    float: right;
+    width: 600px;
+    height: 400px;
+}
+
+.introSub h2 {
+    position: absolute;
+    top: 65px;
+    left: 80px;
+    font-size: 40px;
+    color: pink;
+    font-family: BMHANNAPro;
+}
+
+.introSub span {
+    position: absolute;
+    top: 120px;
+    left: 0px;
+    width: 600px;
+    color: #C1E0EB;
+    font-size: 31px;
+    font-family: BMHANNAPro;
+}
+

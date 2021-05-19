@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="fragment-navbar">
+    <div class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
+        <div id="mainLogo">
+            <a href="/"><img src="img/neulbomLogo.png" alt=""></a>
+        </div>
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+              onsubmit="return false;">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" id="searchInput" onkeyup="enterSearch()"
+                       placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" id="searchBtn">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div id="instagram">
+            <a href="https://instagram.com/neulbom.official?utm_medium=copy_link"><img src="img/instagramLogo.png" alt=""></a>
+        </div>
+        <div id="userLogo">
+            <div sec:authorize-expr="isAuthenticated()" class="dropdown">
+                <button type="button" onclick="memberDropdown()" class="dropbtn" sec:authentication="name"><span>님</span></button>
+                <div id="myDropdown" class="dropdown-content dropdown-menu-right">
+                    <a href="#">MyPage</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+            <div sec:authorize-expr="!isAuthenticated()">
+                <a th:href="@{/login}"><img src="img/user.png" alt=""></a>
+            </div>
+        </div>
+<!--        <input type="hidden" sec:authentication="isAuthenticated()" id="isLogin">-->
+    </div>
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function memberDropdown() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                let dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</div>
+
+</html>

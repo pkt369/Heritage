@@ -12,6 +12,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.transaction.Transactional;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class XmlParsingService {
 
     private final HeritageRepository heritageRepository;
@@ -29,8 +31,8 @@ public class XmlParsingService {
     public void saveList() {
         List<HeritageListDTO> dtos = new ArrayList<>();
         getCulturalHeritage();
-        CulturalHeritage one = heritageRepository.findOne(1);
-        System.out.println(one.toString());
+//        CulturalHeritage one = heritageRepository.findOne(1L);
+//        System.out.println(one.toString());
 
     }
 
@@ -69,8 +71,8 @@ public class XmlParsingService {
                     heritage.setCcbaAdmin(getTagValue("ccbaAdmin", element));
                     heritage.setImageUrl(getTagValue("imageUrl", element));
                     heritage.setContent(getTagValue("content", element));
-                    int save = heritageRepository.save(heritage);
-                    System.out.println(save);
+                    heritage.setCcbaMnm1(getTagValue("ccbaMnm1", element));
+                    heritageRepository.save(heritage);
                 }
             }
         }
@@ -93,6 +95,7 @@ public class XmlParsingService {
                 list.get(i).setCcbaKdcd(getTagValue("ccbaKdcd", element));
                 list.get(i).setCcbaAsno(getTagValue("ccbaAsno", element));
                 list.get(i).setCcbaCtcd(getTagValue("ccbaCtcd", element));
+                list.get(i).setCcbaMnm1(getTagValue("ccbaMnm1", element));
             }
         }
         return list;

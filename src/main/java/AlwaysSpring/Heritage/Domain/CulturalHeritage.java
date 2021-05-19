@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+
 
 /**
  * ccmaName 문화재종목
@@ -20,13 +22,19 @@ import lombok.Setter;
  * ccbaAdmin 관리자
  * imageUrl 메인노출이미지URL
  * content 내용
+ * ccbaMnm1 문화재명
  */
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
 public class CulturalHeritage {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "heritage_id")
     private Long id;
+
     private String ccmaName;
     private String gcodeName;
     private String bcodeName;
@@ -39,6 +47,9 @@ public class CulturalHeritage {
     private String ccceName;
     private String ccbaLcad;
     private String imageUrl;
+    private String ccbaMnm1;
+
+    @Column(length = 5000)
     private String content;
 
     @Override
@@ -57,6 +68,7 @@ public class CulturalHeritage {
                 ", ccceName='" + ccceName + '\'' +
                 ", ccbaLcad='" + ccbaLcad + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", ccbaMnm1='" + ccbaMnm1 + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }

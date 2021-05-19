@@ -1,0 +1,38 @@
+.loginForm,
+.signupForm{
+    margin: 350px 0 auto;
+    text-align: center;
+}
+
+.loginForm input,
+.signupForm input{
+    display: block;
+    margin: 10px auto;
+    width: 300px;
+    height: 42px;
+}
+
+.loginForm button,
+.signupForm button{
+    width: 300px;
+    height: 42px;
+    border: 1px solid #fff;
+    font-family: BMHANNAPro;
+    background-color: #2D2E33;
+    color: white;
+}
+
+#signupUrl {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+}
+
+#signupUrl > a > span {
+    font-family: BMHANNAPro;
+    font-size: 20px;
+    color: white;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 3px;
+    margin-left: -232px;
+}

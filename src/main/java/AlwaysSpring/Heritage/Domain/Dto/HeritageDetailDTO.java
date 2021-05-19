@@ -9,6 +9,7 @@ public class HeritageDetailDTO {
     private String ccbaKdcd;
     private String ccbaAsno;
     private String ccbaCtcd;
+    private String ccbaMnm1;
 
     public HeritageDetailDTO() {
     }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/fragments/header.html :: fragment-header"></div>
+<div class="content">
+    <form th:action="@{/login}" method="post" class="loginForm">
+        <input type="text" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="password">
+        <button type="submit">로그인</button>
+    </form>
+    <div id="signupUrl">
+        <a th:href="@{/signup}"><span>회원가입</span></a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -5,18 +5,20 @@ import AlwaysSpring.Heritage.Repository.HeritageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class HeritageService {
     private final HeritageRepository heritageRepository;
 
-    public int save(CulturalHeritage heritage) {
-        return heritageRepository.save(heritage);
+    public void save(CulturalHeritage heritage) {
+        heritageRepository.save(heritage);
     }
 
-    public CulturalHeritage findOne(int id) {
+    public CulturalHeritage findOne(Long id) {
         return heritageRepository.findOne(id);
     }
 
@@ -24,7 +26,7 @@ public class HeritageService {
         return heritageRepository.findAll();
     }
 
-    public CulturalHeritage findByName(String name) {
+    public List<CulturalHeritage> findByName(String name) {
         return heritageRepository.findByName(name);
     }
 
