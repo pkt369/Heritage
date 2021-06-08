@@ -1,5 +1,5 @@
 body {
-    background-color: #2d2e33;
+    background-color: white;
     margin: 0;
 }
 
@@ -46,7 +46,7 @@ a {
 
 #categoryBtn > span > a {
     margin: 0 70px;
-    color: white;
+    color: black;
     font-size: 28px;
     font-family: BMHANNAPro, monospace;
 }
@@ -106,7 +106,7 @@ a {
     width: auto;
     margin-top: -22px;
     padding: 0 16px;
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 18px;
     transition: 0.6s ease;
@@ -255,7 +255,7 @@ a {
 }
 
 .searchCover > div > div {
-    color: white;
+    color: black;
     font-family: BMEULJIRO;
     padding: 0 100px;
 }
@@ -266,7 +266,7 @@ a {
 }
 
 .searchCover > div > div > a > span {
-    color: white;
+    color: black;
 }
 
 .searchCover > div > div > p {
@@ -311,7 +311,7 @@ a {
 /* --searchPage */
 
 .item > a {
-    color: white;
+    color: black;
 }
 
 #topTen {
@@ -343,7 +343,7 @@ a {
 /*=========================heritageDetail========================*/
 #heritageName {
     margin: 80px 150px 40px 150px;
-    color: white;
+    color: black;
     font-family: 'BMEULJIRO';
     font-weight: normal;
     font-style: normal;
@@ -362,7 +362,7 @@ a {
 
 #heritageContent {
     font-size: 24px;
-    color: white;
+    color: black;
     margin: 100px 0 190px 0;
     padding: 0 100px 50px;
     /*letter-spacing: 1px;*/
@@ -385,7 +385,7 @@ a {
     width: 100%;
     vertical-align: top;
     height: 120px;
-    border: none;
+    border: 1px solid black;
 }
 
 #reviewBtn {
@@ -397,7 +397,7 @@ a {
     bottom: 7px;
     border: none;
     border-radius: 8px;
-    background-color: #2D2E33;
+    background-color: black;
     color: #fff;
 }
 
@@ -406,7 +406,7 @@ a {
 }
 
 #reviewBody > div span {
-    color: white;
+    color: black;
     font-family: BMHANNAPro;
     font-size: 20px;
 }
@@ -420,9 +420,9 @@ a {
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #2D2E33;
+    background-color: white;
     font-family: BMHANNAPro;
-    color: white;
+    color: black;
     height: 50px;
     /*padding: 16px;*/
     font-size: 20px;
@@ -432,7 +432,7 @@ a {
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #2D2E33;
+    background-color: white;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -445,14 +445,14 @@ a {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: black;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -460,7 +460,7 @@ a {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: #f1f1f1
+    background-color: #2d2e33;
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */

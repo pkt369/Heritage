@@ -1,8 +1,8 @@
 .introName {
     margin: 100px 0 0 265px;
     font-family: BMHANNAPro;
-    font-size: 60px;
-    color: white;
+    font-size: 75px;
+    color: black;
 }
 
 .introMain {
@@ -26,7 +26,7 @@
     top: 80px;
     left: 720px;
     font-size: 40px;
-    color: pink;
+    color: #ffa9b8;
     font-family: BMHANNAPro;
 }
 
@@ -34,7 +34,7 @@
     position: absolute;
     top: 145px;
     left: 825px;
-    color: #C1E0EB;
+    color: #8bd2ea;
     font-size: 31px;
     font-family: BMHANNAPro;
 }
@@ -57,7 +57,7 @@
     top: 65px;
     left: 80px;
     font-size: 40px;
-    color: pink;
+    color: #ffa9b8;
     font-family: BMHANNAPro;
 }
 
@@ -66,7 +66,7 @@
     top: 120px;
     left: 0px;
     width: 600px;
-    color: #C1E0EB;
+    color: #8bd2ea;
     font-size: 31px;
     font-family: BMHANNAPro;
 }
